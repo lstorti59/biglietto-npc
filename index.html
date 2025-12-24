@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biglietto di Gratitudine</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      width: 390px;
+      height: 780px;
+      background-image: url("card.png");
+      background-size: cover;
+      background-position: center;
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.45);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0 0 12px 0;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.45;
+      margin: 0 0 12px 0;
+    }
+
+    .natale {
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      background: #f2f2f2;
+      cursor: pointer;
+    }
+
+    .voice-indicator {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      margin: 16px auto;
+      opacity: 0.6;
+    }
+
+    textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: none;
+      padding: 12px;
+      font-size: 14px;
+      resize: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <!-- PARTE ALTA -->
+    <div class="overlay">
+      <p>
+        Questo è un saluto di gratitudine.<br><br>
+        Non per un ruolo soltanto,<br>
+        ma per la presenza, la responsabilità<br>
+        e il segno lasciato nel tempo.
+      </p>
+      <p class="natale">Buon Natale</p>
+
+      <button class="btn">🎧 Ascolta il messaggio</button>
+    </div>
+
+    <!-- INDICATORE VOCE (avatar invisibile) -->
+    <div class="voice-indicator" title="Voce di gratitudine"></div>
+
+    <!-- PARTE BASSA -->
+    <div class="overlay">
+      <p style="font-size:14px;">
+        Se lo desidera, può lasciare un pensiero personale.
+      </p>
+
+      <textarea rows="3" placeholder="Scriva qui il suo pensiero..."></textarea>
+
+      <button class="btn">✉️ Affida il pensiero alla voce</button>
+    </div>
+
+  </div>
+
+</body>
+</html>
+
+
+
+
+
