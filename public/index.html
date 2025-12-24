@@ -63,11 +63,6 @@
       color: #111;
     }
 
-    button:disabled {
-      opacity: 0.6;
-      cursor: default;
-    }
-
     .pulse {
       width: 10px;
       height: 10px;
@@ -117,30 +112,15 @@
 
   </div>
 
-  <!-- SCRIPT DEFINITIVO E STABILE -->
   <script>
-    console.log("Script caricato");
-
     const playButton = document.getElementById("playMessage");
 
-    const audio = new Audio("/voce2.mp3");
-    audio.preload = "auto";
-
     playButton.addEventListener("click", () => {
-      playButton.disabled = true;
-      playButton.textContent = "▶️ Riproduzione in corso...";
+      const audio = new Audio("/voce2.mp3");
 
-      audio.currentTime = 0;
-      audio.play()
-        .catch(err => {
-          alert("Tocca lo schermo per consentire l'audio");
-          console.error(err);
-        });
-    });
-
-    audio.addEventListener("ended", () => {
-      playButton.disabled = false;
-      playButton.textContent = "🔁 Riascolta il messaggio";
+      audio.play().catch(() => {
+        alert("Tocca una volta lo schermo per consentire l'audio");
+      });
     });
   </script>
 
