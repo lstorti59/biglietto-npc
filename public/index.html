@@ -19,7 +19,7 @@
     .card {
       width: 360px;
       height: 640px;
-      background: url("card.png") center / cover no-repeat;
+      background: url("/card.png") center / cover no-repeat;
       border-radius: 28px;
       padding: 20px;
       box-sizing: border-box;
@@ -61,6 +61,11 @@
       cursor: pointer;
       background: #f3f3f3;
       color: #111;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: default;
     }
 
     .pulse {
@@ -112,32 +117,34 @@
 
   </div>
 
-  <!-- SCRIPT DEFINITIVO -->
+  <!-- SCRIPT DEFINITIVO E STABILE -->
   <script>
     console.log("Script caricato");
 
     const playButton = document.getElementById("playMessage");
 
-    if (!playButton) {
-      alert("ERRORE: bottone non trovato");
-    }
+    const audio = new Audio("/voce2.mp3");
+    audio.preload = "auto";
 
     playButton.addEventListener("click", () => {
-      console.log("Bottone cliccato");
+      playButton.disabled = true;
+      playButton.textContent = "▶️ Riproduzione in corso...";
 
-      const audio = new Audio("voce2.mp3");
-
+      audio.currentTime = 0;
       audio.play()
-        .then(() => {
-          console.log("Audio avviato");
-        })
-        .catch(error => {
-          alert("Tocca prima lo schermo per avviare l'audio");
-          console.error(error);
+        .catch(err => {
+          alert("Tocca lo schermo per consentire l'audio");
+          console.error(err);
         });
+    });
+
+    audio.addEventListener("ended", () => {
+      playButton.disabled = false;
+      playButton.textContent = "🔁 Riascolta il messaggio";
     });
   </script>
 
 </body>
 </html>
+
 
