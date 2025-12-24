@@ -57,6 +57,12 @@
       color: #111;
     }
 
+    .guide {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
     .pulse {
       width: 10px;
       height: 10px;
@@ -86,8 +92,15 @@
         ma per la presenza, la responsabilità<br>
         e il segno lasciato nel tempo.
       </p>
+
       <p><strong>Buon Natale</strong></p>
 
+      <!-- FRASE GUIDA -->
+      <p class="guide">
+        Tocca il pulsante qui sotto per ascoltare il messaggio vocale
+      </p>
+
+      <!-- BOTTONE -->
       <button id="playMessage">🎧 Ascolta il messaggio</button>
     </div>
 
@@ -107,7 +120,7 @@
     playButton.addEventListener("click", () => {
       const audio = new Audio("voce.mp3");
       audio.play().catch(error => {
-        alert("Impossibile riprodurre l'audio. Tocca prima lo schermo.");
+        alert("Tocca prima lo schermo per avviare l'audio.");
         console.error(error);
       });
     });
