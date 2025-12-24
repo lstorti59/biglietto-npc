@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Biglietto di auguri con NPC</title>
+  <title>Biglietto di auguri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -19,130 +19,103 @@
     .card {
       width: 360px;
       height: 640px;
-      background: url("card.png") center/cover no-repeat;
-      border-radius: 24px;
-      padding: 24px;
+      background: url("card.png") center / cover no-repeat;
+      border-radius: 28px;
+      padding: 20px;
       box-sizing: border-box;
+      color: white;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      color: white;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     }
 
-    .top {
+    .box {
       background: rgba(0,0,0,0.45);
+      border-radius: 18px;
       padding: 16px;
-      border-radius: 16px;
     }
 
-    .top p {
-      margin: 0 0 8px 0;
+    p {
       line-height: 1.4;
+      font-size: 15px;
+      margin: 0 0 12px 0;
+    }
+
+    strong {
+      font-size: 18px;
     }
 
     button {
+      width: 100%;
       border: none;
       border-radius: 14px;
       padding: 14px;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
-      width: 100%;
-    }
-
-    #play-message {
       background: #f3f3f3;
+      color: #111;
     }
 
     .pulse {
       width: 10px;
       height: 10px;
-      background: #ffdede;
+      background: white;
       border-radius: 50%;
-      margin: 12px auto;
+      margin: 10px auto;
+      opacity: 0.6;
       animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0%   { transform: scale(1);   opacity: .5; }
+      0%   { transform: scale(1);   opacity: 0.4; }
       50%  { transform: scale(1.8); opacity: 1; }
-      100% { transform: scale(1);   opacity: .5; }
-    }
-
-    .bottom {
-      background: rgba(0,0,0,0.45);
-      padding: 16px;
-      border-radius: 16px;
-    }
-
-    textarea {
-      width: 100%;
-      border-radius: 12px;
-      border: none;
-      padding: 10px;
-      box-sizing: border-box;
-      resize: none;
-      font-size: 14px;
+      100% { transform: scale(1);   opacity: 0.4; }
     }
   </style>
 </head>
 
 <body>
-  <div class="card" role="application" aria-label="Biglietto di auguri con NPC">
 
-    <div class="top">
-      <p>Questo è un saluto di gratitudine.</p>
-      <p>Non per un ruolo soltanto,<br>
-         ma per la presenza, la responsabilità<br>
-         e il segno lasciato nel tempo.</p>
+  <div class="card">
+
+    <div class="box">
+      <p>
+        Questo è un saluto di gratitudine.<br><br>
+        Non per un ruolo soltanto,<br>
+        ma per la presenza, la responsabilità<br>
+        e il segno lasciato nel tempo.
+      </p>
       <p><strong>Buon Natale</strong></p>
 
-      <button id="play-message">🎧 Ascolta il messaggio</button>
+      <button id="playMessage">🎧 Ascolta il messaggio</button>
     </div>
 
-    <div>
-      <div class="pulse"></div>
-      <p style="text-align:center; font-size:14px;">Voce di gratitudine</p>
-    </div>
+    <div class="pulse"></div>
 
-    <div class="bottom">
-      <p style="font-size:14px;">Se lo desidera, può lasciare un pensiero personale.</p>
-      <textarea placeholder="Scriva qui il suo pensiero..."></textarea>
-      <br><br>
-      <button disabled>✉️ Affida il pensiero alla voce</button>
+    <div class="box">
+      <p style="font-size:14px; opacity:0.9;">
+        Un pensiero sincero, letto con voce.
+      </p>
     </div>
 
   </div>
 
-  <!-- CONVAI -->
-  <script type="module">
-    import { ConvaiClient } from "https://cdn.jsdelivr.net/npm/@convai/web-sdk@latest/dist/convai-web-sdk.esm.js";
+  <script>
+    const playButton = document.getElementById("playMessage");
 
-    // 🔴 INSERISCI QUI LA TUA API KEY CONVAI
-    const CONVAI_API_KEY = "6d17b994bb7ae91ed23ec7002e11e72f";
-
-    // 🔴 IL TUO CHARACTER ID (già corretto)
-    const CHARACTER_ID = "159ede3c-e0a9-11f0-a2da-42010a7be027";
-
-    const convai = new ConvaiClient({
-      apiKey: CONVAI_API_KEY,
-      characterId: CHARACTER_ID,
-      enableAudio: true
-    });
-
-    const button = document.getElementById("play-message");
-
-    button.addEventListener("click", async () => {
-      button.innerText = "Sto parlando…";
-
-      await convai.speak(
-        "Questo è un saluto di gratitudine. Non per un ruolo soltanto, ma per la presenza, la responsabilità e il segno lasciato nel tempo. Buon Natale."
-      );
-
-      button.innerText = "Ascolta il messaggio";
+    playButton.addEventListener("click", () => {
+      const audio = new Audio("voce.mp3");
+      audio.play().catch(error => {
+        alert("Impossibile riprodurre l'audio. Tocca prima lo schermo.");
+        console.error(error);
+      });
     });
   </script>
+
 </body>
 </html>
+
 
 
 
