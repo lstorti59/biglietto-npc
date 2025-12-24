@@ -46,6 +46,12 @@
       font-size: 18px;
     }
 
+    .guide {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
     button {
       width: 100%;
       border: none;
@@ -55,12 +61,6 @@
       cursor: pointer;
       background: #f3f3f3;
       color: #111;
-    }
-
-    .guide {
-      font-size: 14px;
-      opacity: 0.9;
-      margin-bottom: 8px;
     }
 
     .pulse {
@@ -95,12 +95,10 @@
 
       <p><strong>Buon Natale</strong></p>
 
-      <!-- FRASE GUIDA -->
       <p class="guide">
         Tocca il pulsante qui sotto per ascoltare il messaggio vocale
       </p>
 
-      <!-- BOTTONE -->
       <button id="playMessage">🎧 Ascolta il messaggio</button>
     </div>
 
@@ -114,17 +112,32 @@
 
   </div>
 
+  <!-- SCRIPT DEFINITIVO -->
   <script>
+    console.log("Script caricato");
+
     const playButton = document.getElementById("playMessage");
 
+    if (!playButton) {
+      alert("ERRORE: bottone non trovato");
+    }
+
     playButton.addEventListener("click", () => {
+      console.log("Bottone cliccato");
+
       const audio = new Audio("voce2.mp3");
-      audio.play().catch(error => {
-        alert("Tocca prima lo schermo per avviare l'audio.");
-        console.error(error);
-      });
+
+      audio.play()
+        .then(() => {
+          console.log("Audio avviato");
+        })
+        .catch(error => {
+          alert("Tocca prima lo schermo per avviare l'audio");
+          console.error(error);
+        });
     });
   </script>
 
 </body>
 </html>
+
